@@ -347,6 +347,22 @@
     font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
     border-top: 1px solid #ddd;
 }
+        .content-item h4::before {
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.3em;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.content-item h4.good::before {
+    content: '〇';
+    color: #2c3e50; /* 落ち着いたダークグレー（見出しと同系統） */
+}
+.content-item h4.bad::before {
+    content: '×';
+    color: #a94442; /* 赤みがかった警告色（注意喚起） */
+}
+
     </style>
 </head>
 <body>
@@ -416,19 +432,19 @@
             <h2 class="section-title">得意・よく依頼される内容</h2>
             <div class="content-list">
                 <div class="content-item">
-                    <h4>執筆スタイル</h4>
+                    <h4 class="good">執筆スタイル</h4>
                     <p>三人称（男性視点/神視点）での執筆を得意としています</p>
                 </div>
                 <div class="content-item">
-                    <h4>ジャンル</h4>
+                    <h4 class="good">ジャンル</h4>
                     <p>恋愛要素無（性描写全振り）/ 純愛 / 執着 / シリアス / 切ない / 甘め 等</p>
                 </div>
                  <div class="content-item">
-                    <h4>成人向け要素</h4>
+                    <h4 class="good">成人向け要素</h4>
                     <p>快楽堕ち / 淫語 / あへおほ / ♡喘ぎ / 汚喘ぎ / 種付け / 下品 / 常識がエロい / 言葉責め / 羞恥プレイ / 露出 / 自慰 / 懇願 / 乱交 / わからせ / モブ姦 / 肉便器 / ふたなり / 産卵 / 獣姦 / 触手 / 小スカ / 軽リョナ 等</p>
                 </div>
                 <div class="content-item">
-                    <h4>キャラクター要素</h4>
+                    <h4 class="good">キャラクター要素</h4>
                     <p>外面と内面のギャップ / 執着・愛が重い攻め / 腹黒攻め / ヘタレ攻め / ツンデレ攻め・受け / 健気受け / クーデレ受け / ポンコツ・生意気受け 等</p>
                 </div>
             </div>
@@ -440,15 +456,15 @@
             <h2 class="section-title">対応不可</h2>
             <div class="content-list">
                 <div class="content-item">
-                    <h4>キャラクター</h4>
+                    <h4 class="bad">キャラクター</h4>
                     <p>実在する人物 / 原作ストーリーやキャラの大幅な崩壊 / キャラヘイト 等</p>
                 </div>
                 <div class="content-item">
-                    <h4>ジャンル</h4>
+                    <h4 class="bad">ジャンル</h4>
                     <p>ギャグ・コメディ / 成り変わり / ミステリ・歴史・軍事等の専門知識が必要なもの 等</p>
                 </div>
                 <div class="content-item">
-                    <h4>成人向け要素</h4>
+                    <h4 class="bad">成人向け要素</h4>
                     <p>ふたなりを除く女性同士の性行/虫 / グロ / 死 / 汚物・悪臭 / 飲食に関連するもの/妊婦・子供・老人を対象にしたもの/その他特殊性癖（くすぐり / 鼻フック / プロレス / 状態変化 / 巨大化・小人化 / 丸呑み / 欠損 / ケモ / メカ等）</p>
                 </div>
             </div>
