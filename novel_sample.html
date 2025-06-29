@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春風のメロディ - sample site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #CBD3D4;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #34495e;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .novel-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .novel-header {
+            padding: 2.5rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, #CBD3D4 0%, #a8b5b8 100%);
+            text-align: center;
+        }
+
+        .novel-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .novel-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .novel-content {
+            padding: 2.5rem;
+        }
+
+        .comment-section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #CBD3D4;
+        }
+
+        .comment-title {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .comment-text {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .novel-text {
+            font-size: 9pt;
+            line-height: 2;
+            color: #333;
+            text-align: justify;
+            font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+        }
+
+        .novel-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1em;
+        }
+
+        .novel-text p:first-child {
+            text-indent: 0;
+        }
+
+        .home-button-container {
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .home-button {
+            display: inline-block;
+            background: #CBD3D4;
+            color: #2c3e50;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .home-button:hover {
+            background: #a8b5b8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .novel-header {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .novel-title {
+                font-size: 1.8rem;
+            }
+
+            .novel-content {
+                padding: 1.5rem;
+            }
+
+            .comment-section {
+                padding: 1.2rem;
+            }
+
+            .home-button-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .novel-tags {
+                gap: 0.5rem;
+            }
+
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">sample site</a>
+                <a href="index.html#samples" class="back-link">← サンプル一覧に戻る</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <article class="novel-container">
+                <div class="novel-header">
+                    <h1 class="novel-title">春風のメロディ</h1>
+                    <div class="novel-tags">
+                        <span class="tag">#一次創作</span>
+                        <span class="tag">#友情</span>
+                        <span class="tag">#青春</span>
+                        <span class="tag">#学園</span>
+                        <span class="tag">#成長</span>
+                    </div>
+                </div>
+
+                <div class="novel-content">
+                    <section class="comment-section">
+                        <h2 class="comment-title">筆者コメント</h2>
+                        <p class="comment-text">
+                            新しい季節の始まりと共に、新たな出会いや友情が芽生える瞬間を描きました。主人公の心の成長と、周りの人々との温かい交流を通して、青春の美しさや儚さを表現したいと思います。桜の季節という美しい時期を背景に、読者の皆さまにも懐かしい気持ちや温かな感情を感じていただけたら嬉しいです。
+                        </p>
+                    </section>
+
+                    <section class="novel-text">
+                        <p>
+                            桜の花びらが舞い散る四月の午後、新しい教室の窓際で私は一人、外の景色を眺めていた。転校生として新しい環境に足を踏み入れたばかりの私にとって、この静寂は心地よくもあり、同時に少し寂しくもあった。
+                        </p>
+                        
+                        <p>
+                            「あの、一人？」
+                        </p>
+                        
+                        <p>
+                            振り返ると、短い黒髪の女の子が心配そうな表情で私を見つめていた。彼女の名前は田中美咲。クラスメイトの中でも特に人懐っこく、いつも明るい笑顔を絶やさない子だった。
+                        </p>
+                        
+                        <p>
+                            「転校したばかりで、まだ慣れなくて」私は苦笑いを浮かべながら答えた。
+                        </p>
+                        
+                        <p>
+                            「それなら一緒にお弁当食べない？」美咲は屈託のない笑顔で提案してくれた。「私、一人で食べるの苦手なの。話し相手がいてくれると嬉しいな」
+                        </p>
+                        
+                        <p>
+                            その瞬間、私の心に温かなものが広がった。新しい場所での孤独感が、彼女の優しさによって少しずつ溶けていくのを感じた。
+                        </p>
+                        
+                        <p>
+                            私たちは屋上へと向かった。そこは桜の木々に囲まれた、まさに春の楽園のような場所だった。花びらが風に舞い、陽だまりの中で私たちは向かい合って座った。
+                        </p>
+                        
+                        <p>
+                            「前の学校ではどんなことしてたの？」美咲は興味深そうに尋ねた。
+                        </p>
+                        
+                        <p>
+                            「吹奏楽部でフルートを吹いてました」私は少し恥ずかしそうに答えた。「こっちでも続けられたらいいなって思ってるんですけど」
+                        </p>
+                        
+                        <p>
+                            「えー、素敵！私も音楽大好きなの。今度聞かせてもらえる？」
+                        </p>
+                        
+                        <p>
+                            美咲の目がキラキラと輝いているのを見て、私も自然と笑顔になった。久しぶりに感じる、誰かと共有する喜び。それは春の陽だまりのように、心を温かく包んでくれた。
+                        </p>
+                        
+                        <p>
+                            それから私たちは毎日のように一緒にお弁当を食べるようになった。美咲は私が新しい環境に慣れるよう、様々な友達を紹介してくれたり、学校の行事について教えてくれたりした。
+                        </p>
+                        
+                        <p>
+                            ある日、放課後の音楽室で私がフルートを練習していると、美咲がそっと扉を開けて入ってきた。
+                        </p>
+                        
+                        <p>
+                            「綺麗な音色ね」彼女は静かに言った。「まるで春風が歌っているみたい」
+                        </p>
+                        
+                        <p>
+                            私は照れながらフルートを置いた。「まだまだ上手じゃないんです」
+                        </p>
+                        
+                        <p>
+                            「そんなことない。私、音楽のことはよくわからないけど、心に響く演奏だと思う」美咲は真剣な表情で言った。「あなたの音楽を聞いていると、なんだか優しい気持ちになれるの」
+                        </p>
+                        
+                        <p>
+                            その言葉が私の心に深く響いた。音楽を通して誰かに気持ちを伝えることができる。それこそが私が音楽を続ける理由だった。
+                        </p>
+                        
+                        <p>
+                            桜の季節が過ぎ、新緑の頃になっても、私と美咲の友情は深まっていった。彼女との出会いは、私にとって新しい環境への扉を開いてくれただけでなく、自分自身を再発見する機会も与えてくれた。
+                        </p>
+                        
+                        <p>
+                            春風のように優しく、メロディのように美しい友情。それは私の高校生活の最も大切な宝物となった。
+                        </p>
+                    </section>
+                </div>
+
+                <div class="home-button-container">
+                    <a href="index.html" class="home-button">ホームに戻る</a>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

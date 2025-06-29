@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #CBD3D4;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #2c3e50;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #34495e;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #CBD3D4 0%, #a8b5b8 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        /* Profile Section */
+        .profile-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #CBD3D4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #2c3e50;
+            flex-shrink: 0;
+        }
+
+        .profile-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .profile-text p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Strengths Section */
+        .strengths {
+            background-color: #f8f9fa;
+        }
+
+        .strengths-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .strength-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            max-width: 350px;
+            transition: transform 0.3s;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .strength-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .strength-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Content Lists */
+        .content-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .content-item h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Samples Section */
+        .samples {
+            background-color: #f8f9fa;
+        }
+
+        .samples-notice {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            color: #856404;
+        }
+
+        .category {
+            margin-bottom: 3rem;
+        }
+
+        .category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .samples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sample-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .sample-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sample-image {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #CBD3D4, #a8b5b8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+
+        .sample-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .sample-info {
+            padding: 1.5rem;
+        }
+
+        .sample-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .sample-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #CBD3D4;
+            color: #2c3e50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #CBD3D4;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .strengths-grid {
+                flex-direction: column;
+            }
+
+            .samples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">sample site</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#profile">プロフィール</a></li>
+                <li><a href="#strengths">執筆の強み</a></li>
+                <li><a href="#specialty">得意内容</a></li>
+                <li><a href="#unavailable">対応不可</a></li>
+                <li><a href="#samples">作品サンプル</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>sample site</h1>
+            <p>こちらは、作品サンプルの掲載ページです。<br>
+            様々なジャンルの小説作品をご紹介しております。</p>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="container">
+            <h2 class="section-title">プロフィール</h2>
+            <div class="profile-content">
+                <div class="profile-image">
+                    📝
+                </div>
+                <div class="profile-text">
+                    <h3>なでり</h3>
+                    <p>小説執筆を専門とする作家です。様々なジャンルの物語を通じて、読者の皆さまに感動と驚きをお届けできるよう日々精進しております。キャラクターの心情に寄り添った丁寧な描写を心がけ、一つ一つの作品を大切に執筆させていただいております。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="strengths" class="strengths">
+        <div class="container">
+            <h2 class="section-title">執筆の強み</h2>
+            <div class="strengths-grid">
+                <div class="strength-card">
+                    <h4>多様な描写への対応力</h4>
+                    <p>5000～15000字程度の短編小説を得意としており、さまざまなスタイルの表現に幅広く対応可能です。ご依頼内容に応じて、描写の濃度や表現方法を柔軟に調整できる点が強みです。</p>
+                </div>
+                <div class="strength-card">
+                    <h4>丁寧な心情描写</h4>
+                    <p>趣味では、感情の機微を繊細に描いた長編ヒューマンドラマを執筆しております。恋愛要素を含む場合も、キャラクターの心情に丁寧に寄り添った描写を心がけています。</p>
+                </div>
+                <div class="strength-card">
+                    <h4>キャラクターの尊重</h4>
+                    <p>キャラクターを単なる物語の駒としてではなく、いち人間として尊重することを信条としています。一次創作・二次創作を問わず、お預かりしたキャラクターは丁寧に取り扱い、その魅力を損なわぬよう大切に書かせていただきます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specialty">
+        <div class="container">
+            <h2 class="section-title">得意・よく依頼される内容</h2>
+            <div class="content-list">
+                <div class="content-item">
+                    <h4>執筆スタイル</h4>
+                    <p>三人称（男性視点／神視点）での執筆を得意としています。</p>
+                </div>
+                <div class="content-item">
+                    <h4>ジャンル</h4>
+                    <p>恋愛要素無、純愛、シリアス、切ない、甘め等のジャンルを得意としています。</p>
+                </div>
+                <div class="content-item">
+                    <h4>好むキャラクター要素</h4>
+                    <p>外面と内面のギャップ、執着・愛が重い攻め、腹黒攻め、ヘタレ攻め、ツンデレ攻め・受け、健気受け、クーデレ受け、ポンコツ・生意気受け等</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="unavailable">
+        <div class="container">
+            <h2 class="section-title">対応不可</h2>
+            <div class="content-list">
+                <div class="content-item">
+                    <h4>キャラクター</h4>
+                    <p>実在の人物、原作ストーリーやキャラ崩壊、キャラヘイト等は対応できません。</p>
+                </div>
+                <div class="content-item">
+                    <h4>ジャンル</h4>
+                    <p>ギャグ・コメディ、ハーレム、成り変わり、ミステリ・歴史・軍事等の専門知識が必要なもの等は対応できません。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="samples" class="samples">
+        <div class="container">
+            <h2 class="section-title">作品サンプル</h2>
+            <div class="samples-notice">
+                <p>掲載中のサンプル作品は、様々なジャンルの内容となっております。各作品にはタグを明記しておりますので、ご自身にとって興味のある作品をお選びいただけます。</p>
+            </div>
+
+            <div class="category">
+                <h3>全年齢作品</h3>
+                <div class="samples-grid">
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">春風のメロディ</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">桜舞う季節に出会った二人の心温まる物語です。新しい環境で始まる友情と成長を描いた作品です。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#一次創作</span>
+                                <span class="tag">#友情</span>
+                                <span class="tag">#青春</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <h3>ドラマティック作品</h3>
+                <div class="samples-grid">
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">雨音の記憶</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">雨の日に蘇る過去の思い出と、現在への想いを重ねた感動的な物語です。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#一次創作</span>
+                                <span class="tag">#ドラマ</span>
+                                <span class="tag">#感動</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">星空の約束</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">星降る夜に交わした約束を巡る、時を超えた純愛ストーリーです。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#二次創作</span>
+                                <span class="tag">#純愛</span>
+                                <span class="tag">#切ない</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">夕暮れの告白</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">学園を舞台にした、恋心に素直になれない主人公の成長物語です。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#学園</span>
+                                <span class="tag">#恋愛</span>
+                                <span class="tag">#成長</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <h3>ロマンス作品</h3>
+                <div class="samples-grid">
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">深紅の情熱</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">大人の恋愛を描いた情熱的なロマンス小説です。心の奥底に秘めた想いが交錯します。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#一次創作</span>
+                                <span class="tag">#大人の恋愛</span>
+                                <span class="tag">#情熱</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">月夜の誘惑</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">月明かりの下で繰り広げられる、大人の駆け引きと心の葛藤を描いた作品です。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#二次創作</span>
+                                <span class="tag">#心理描写</span>
+                                <span class="tag">#ロマンス</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sample-card">
+                        <div class="sample-image">
+                            サンプル画像
+                            <div class="sample-title">秘密の花園</div>
+                        </div>
+                        <div class="sample-info">
+                            <p class="sample-description">禁断の恋を描いた、美しくも切ないラブストーリーです。</p>
+                            <div class="sample-tags">
+                                <span class="tag">#禁断の恋</span>
+                                <span class="tag">#美麗</span>
+                                <span class="tag">#切ない</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ハンバーガーメニューの動作
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // メニューリンクをクリックしたときにメニューを閉じる
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerHeight = 70;
+                const targetPosition = target.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
