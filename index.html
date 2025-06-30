@@ -367,9 +367,11 @@
 .category .samples-grid {
   display: flex;
   gap: 2rem;
-  overflow-x: auto;     /* 横スクロール可にする場合 */
-  flex-wrap: nowrap;    /* 折り返さない */
-  justify-content: center;  /* 中央揃え（任意） */
+  overflow-x: auto;     /* 横スクロールは維持 */
+  overflow-y: visible;  /* 縦方向のはみ出しを許可 */
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding-bottom: 1rem; /* 影用のスペース */
 }
 
 /* カード個別設定：固定サイズ + 高さ揃え */
