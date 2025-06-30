@@ -363,6 +363,32 @@
     content: '×';
     color: #a94442; /* 赤みがかった警告色（注意喚起） */
 }
+        /* カードコンテナ：横並び・折り返しなし */
+.category .samples-grid {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;     /* 横スクロール可にする場合 */
+  flex-wrap: nowrap;    /* 折り返さない */
+  justify-content: center;  /* 中央揃え（任意） */
+}
+
+/* カード個別設定：固定サイズ + 高さ揃え */
+.sample-card {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 全てのカード内要素が均等な高さになるよう調整（必要に応じて） */
+.sample-image {
+  height: 200px;   /* 画像の高さ固定 */
+  overflow: hidden;
+}
+
+.sample-description {
+  flex-grow: 1;    /* あらすじ部分が余白を埋める */
+}
 
     </style>
 </head>
@@ -574,7 +600,7 @@
                     <a href="novelsample5.html" style="text-decoration: none;">
                     <div class="sample-card">
                         <div class="sample-image">
-    <img src="milk.png" alt="ご主人様、そろそろミルクのお時間ですよ♡" style="width:100%; height:100%; object-fit:cover;">
+    <img src="images/milk.png" alt="ご主人様、そろそろミルクのお時間ですよ♡" style="width:100%; height:100%; object-fit:cover;">
     <div class="sample-title">ご主人様、そろそろミルクのお時間ですよ♡</div>
 </div>
                         <div class="sample-info">
