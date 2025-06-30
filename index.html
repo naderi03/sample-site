@@ -394,7 +394,23 @@
 .sample-description {
   flex-grow: 1;    /* あらすじ部分が余白を埋める */
 }
+@media (max-width: 768px) {
+  /* カードコンテナを縦並びに */
+  .category .samples-grid {
+    display: flex;
+    flex-direction: column;    /* 縦に並べる */
+    overflow-x: visible;       /* 横スクロールをオフ */
+    padding-bottom: 0;         /* 影用の余白もリセット */
+    gap: 1.5rem;               /* カード間の余白 */
+  }
 
+  /* カードを画面幅いっぱいに */
+  .category .samples-grid .sample-card {
+    width: 100%;               /* 幅いっぱい */
+    max-width: none;           /* 固定幅の制限を外す */
+    margin: 0 auto;            /* センター寄せ（不要なら省略） */
+  }
+}
     </style>
 </head>
 <body>
