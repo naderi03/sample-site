@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sample site</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,7 +51,7 @@
     }
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: bold; }
     .hero p {
-      font-size: 0.9rem; /* セミコロン漏れ修正 & 少し読みやすく */
+      font-size: 0.9rem;
       max-width: 600px;
       margin: 0 auto;
       opacity: 0.8;
@@ -73,6 +73,7 @@
       width: 200px; height: 200px; border-radius: 50%;
       background-color: #CBD3D4; display: flex; align-items: center; justify-content: center;
       font-size: 3rem; color: #2c3e50; flex-shrink: 0;
+      background-size: cover; background-position: center;
     }
     .profile-text h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #2c3e50; }
     .profile-text p { color: #666; line-height: 1.8; }
@@ -117,30 +118,32 @@
       font-size: 1.5rem; margin-bottom: 1.5rem; color: #2c3e50; text-align: center;
     }
 
-    /* --- 重要：横スクロール行をフルブリード化し、先頭カードを完全表示 --- */
+    /* --- 横スクロール行（PC時）：中央揃え + 端まで見えるフルブリード --- */
     .category .samples-grid {
       display: flex;
       gap: 2rem;
       flex-wrap: nowrap;
-      justify-content: flex-start;          /* 左寄せで先頭から見せる */
+      justify-content: center;             /* 中央寄せ */
       overflow-x: auto;
-      overflow-y: visible;                  /* 影が切れないように */
-      width: 100vw;                         /* ビューポート幅いっぱい */
-      margin-left: calc(50% - 50vw);        /* コンテナ外にフルブリード */
-      padding: 0 24px 1rem;                 /* 左右余白 + 影分の余白 */
+      overflow-y: visible;                 /* 影が切れないように */
+      width: 100vw;                        /* ビューポート幅いっぱい */
+      margin-left: calc(50% - 50vw);       /* コンテナ外にフルブリード */
+      padding: 0 24px 1rem;                /* 左右余白 + 影分の余白 */
       scroll-behavior: smooth;
+      scroll-padding-left: 24px;           /* 先頭に余白を確保（見切れ防止） */
     }
     .category .samples-grid::-webkit-scrollbar { height: 8px; }
     .category .samples-grid::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
 
     .sample-card {
       width: 360px;
-      flex: 0 0 360px;      /* 固定幅アイテムとして安定表示 */
+      flex: 0 0 360px;                     /* 固定幅で安定表示 */
       flex-shrink: 0;
       display: flex; flex-direction: column;
       background: white; border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       overflow: hidden; transition: transform 0.3s;
+      scroll-snap-align: start;            /* 任意：スクロールの停まり方を少し整える */
     }
     .sample-card:hover { transform: translateY(-5px); }
 
@@ -182,13 +185,15 @@
       .profile-content { flex-direction: column; text-align: center; }
       .strengths-grid { flex-direction: column; }
 
-      /* スマホは縦積み */
+      /* スマホは縦積み（横スクロール無効化） */
       .category .samples-grid {
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
         overflow-x: visible;
-        padding: 0 20px 0;      /* コンテンツに合わせて通常余白へ */
-        margin-left: 0; width: 100%;
+        padding: 0 20px 0;
+        margin-left: 0;
+        width: 100%;
         gap: 1.5rem;
       }
       .category .samples-grid .sample-card { width: 100%; max-width: none; }
@@ -227,7 +232,7 @@
     <div class="container">
       <h2 class="section-title">プロフィール</h2>
       <div class="profile-content">
-        <div class="profile-image" style="background-image: url('images/profileicon.png'); background-size: cover; background-position: center;"></div>
+        <div class="profile-image" style="background-image: url('images/profileicon.png');"></div>
         <div class="profile-text">
           <h3>なでり</h3>
           <p>難儀な男とジト目の女の子が大好物の一次創作オタク。キャラクターの内面や背景を分析・考察をするのも好き。一次・二次・夢などジャンルを問わず、コミッションを通じて依頼者様の「好き」という気持ちに触れ、それを形にするお手伝いができることが、何よりの喜びです。</p>
