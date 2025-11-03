@@ -52,7 +52,7 @@
     }
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: bold; }
     .hero p {
-      font-size: 0.65rem; /* セミコロン抜け修正 */
+      font-size: 0.65rem; /* セミコロン修正 */
       max-width: 600px;
       margin: 0 auto;
       opacity: 0.8;
@@ -100,7 +100,7 @@
     .category { margin-bottom: 3rem; }
     .category h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #2c3e50; text-align: center; }
 
-    /* （元のグリッド定義はモバイルでも使用） */
+    /* （基礎） */
     .samples-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -128,33 +128,29 @@
     .sample-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { background: #CBD3D4; color: #2c3e50; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; }
 
-    /* ======== PC用：横スクロール行（フルブリード中央化） ======== */
+    /* ===== PC：横スクロールをコンテナ内で安全に（先頭欠けを解消） ===== */
     .category .samples-grid {
       display: flex;
       gap: 2rem;
       flex-wrap: nowrap;
-      justify-content: center;       /* 少数でも中央揃え */
-      overflow-x: auto;              /* 横スクロール */
-      overflow-y: visible;           /* 影を切らない */
-      width: 100vw;                  /* ビューポート幅 */
-      margin-left: calc(50% - 50vw); /* フルブリード中央化（左寄り防止） */
-      margin-right: calc(50% - 50vw);
-      padding-inline: 2rem;          /* 先頭末尾のガター */
-      padding-bottom: 1rem;          /* 影のための下余白 */
+      overflow-x: auto;
+      overflow-y: visible;          /* 影が切れないように */
+      /* .container の padding:0 20px を相殺→再付与 */
+      margin-inline: -20px;
+      padding-inline: 20px;
+      padding-bottom: 1rem;         /* 影の余白 */
       scroll-behavior: smooth;
-      scroll-padding-left: 2rem;     /* スクロール開始の余白 */
+      scroll-padding-left: 20px;    /* 先頭カードを欠けさせない */
+      justify-content: flex-start;  /* 初期表示は左から3枚見える */
     }
-    .category .samples-grid::-webkit-scrollbar { height: 8px; }
-    .category .samples-grid::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
-
     .category .samples-grid .sample-card {
       width: 360px;
-      flex-shrink: 0;                /* 縮ませない */
+      flex-shrink: 0;               /* カードを縮ませない */
       display: flex;
       flex-direction: column;
       border-radius: 8px;
     }
-    .sample-description { flex-grow: 1; }
+    .sample-description { flex-grow: 1; } /* 説明領域で高さ調整 */
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -171,21 +167,19 @@
       .profile-content { flex-direction: column; text-align: center; }
       .strengths-grid { flex-direction: column; }
 
-      /* モバイルでは縦並びに戻す（フルブリード解除） */
+      /* モバイルでは縦並びに戻す */
       .category .samples-grid {
         display: flex;
         flex-direction: column;
         overflow-x: visible;
         gap: 1.5rem;
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
+        margin-inline: 0;
         padding-inline: 0;
         padding-bottom: 0;
       }
       .category .samples-grid .sample-card { width: 100%; max-width: none; }
 
-      /* スマホの文字調整（ご希望済み項目） */
+      /* ご要望済み：スマホの文字サイズ微調整 */
       .profile-text p,
       .samples-notice p { font-size: 0.85rem; }
     }
@@ -276,244 +270,4 @@
           <p>快楽堕ち / 淫語 / あへおほ / ♡喘ぎ / 汚喘ぎ / 種付け / 下品 / 常識がエロい / 言葉責め / 羞恥プレイ / 露出 / 自慰 / 懇願 / 乱交 / わからせ / モブ姦 / 肉便器 / ふたなり / 産卵 / 獣姦 / 触手 / 小スカ / 軽リョナ 等</p>
         </div>
         <div class="content-item">
-          <h4 class="good">キャラクター要素</h4>
-          <p>外面と内面のギャップ / 執着・愛が重い攻め / 腹黒攻め / ヘタレ攻め / ツンデレ攻め・受け / 健気受け / クーデレ受け / ポンコツ・生意気受け 等</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="unavailable">
-    <div class="container">
-      <h2 class="section-title">対応不可</h2>
-      <div class="content-list">
-        <div class="content-item">
-          <h4 class="bad">キャラクター</h4>
-          <p>実在する人物 / 原作ストーリーやキャラの大幅な崩壊 / キャラヘイト 等</p>
-        </div>
-        <div class="content-item">
-          <h4 class="bad">ジャンル</h4>
-          <p>ギャグ・コメディ / 成り変わり / ミステリ・歴史・軍事等の専門知識が必要なもの 等</p>
-        </div>
-        <div class="content-item">
-          <h4 class="bad">成人向け要素</h4>
-          <p>虫 / グロ / 死 / 汚物・悪臭 / 飲食に関連するもの/妊婦・子供・老人を対象にしたもの</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="samples" class="samples">
-    <div class="container">
-      <h2 class="section-title">作品サンプル</h2>
-      <div class="samples-notice">
-        <p>掲載中のサンプル作品は、主に成人向けの内容となっており、非常に過激な表現を含むものもございますので、閲覧の際はご注意ください。</p>
-        <p>各作品にはタグを明記しておりますので、苦手な要素が含まれていないか、必ずご確認の上でご覧いただきますようお願いいたします。</p>
-      </div>
-
-      <div class="category">
-        <h3>全年齢作品</h3>
-        <div class="samples-grid">
-          <a href="novelsample1.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/natsunoennite.png" alt="夏の縁にて" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">夏の縁にて</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">夏の静けさが包む午後。ピアノの練習を終えた澪は、幼なじみ・晶の屋敷を訪れる。縁側に揺れる風鈴の音、畳に転がる猫、差し込む日差し――すべてが穏やかに二人の時間を彩る。交わす言葉は少なくても、そっと視線を重ねるだけで伝わるものがある。何気ない夏の日の、かけがえのないひととき。</p>
-                <div class="sample-tags">
-                  <span class="tag">#一次創作</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#幼馴染</span>
-                  <span class="tag">#高校生</span>
-                  <span class="tag">#恋人未満</span>
-                  <span class="tag">#片思われ</span>
-                  <span class="tag">#日常</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="category">
-        <h3>女性向けR-18</h3>
-        <div class="samples-grid">
-          <a href="novelsample2.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/dokutomitsuto.png" alt="毒と蜜と" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">毒と蜜と</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">ルシアンはその優秀さと不遜な態度ゆえに上級生たちから妬まれ、ある日こっそりと媚薬を盛られてしまう。訓練を無断欠席した彼を心配した仁が部屋を訪れると、そこいたのは苦しげに蹲るルシアン。医務室に、と肩を貸そうとする仁を、彼は冷たく突き放すが……。</p>
-                <div class="sample-tags">
-                  <span class="tag">#二次創作（掲載許可有依頼品）</span>
-                  <span class="tag">#BL</span>
-                  <span class="tag">#先輩後輩</span>
-                  <span class="tag">#誘い受け</span>
-                  <span class="tag">#媚薬</span>
-                  <span class="tag">#♡喘ぎ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="novelsample3.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/labyrinth.png" alt="ヴィスカス・ラビリンスの恋人たち" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">ヴィスカス・ラビリンスの恋人たち</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">灰色の曇天と湖畔の霧が包むニューイングランドの館。不可解な連続失踪事件の調査に乗り込むFBI捜査官エリノアと、彼女を追う恋人・瑞恩。二人は異形の神話生物ショゴスの触手に囚われ、身体も心も抗えぬ快楽と恐怖の迷宮に堕ちていく――。
-</p>
-                <div class="sample-tags">
-                  <span class="tag">#一次創作（掲載許可有依頼品）</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#異種姦</span>
-                  <span class="tag">#触手</span>
-                  <span class="tag">#♡喘ぎ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="novelsample8.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/labyrinth.png" alt="世界で一番やわらかな証明" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">世界で一番やわらかな証明</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">灰色の曇天と湖畔の霧が包むニューイングランドの館。不可解な連続失踪事件の調査に乗り込むFBI捜査官エリノアと、彼女を追う恋人・瑞恩。二人は異形の神話生物ショゴスの触手に囚われ、身体も心も抗えぬ快楽と恐怖の迷宮に堕ちていく――。
-</p>
-                <div class="sample-tags">
-                  <span class="tag">#一次創作（掲載許可有依頼品）</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#純愛</span>
-                  <span class="tag">#♡喘ぎ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="novelsample4.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/sazanaminoori.jpg" alt="さざなみの檻" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">さざなみの檻</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">地味で穏やかな日々を送る事務員・朝比奈潮の静かな日常は、社内で高嶺の花として扱われている一条兄弟の接近で揺らぎ始める。やがて誘われた夜のバーで、潮は自らの意志が曖昧になるほど酔わされ、ふたりの掌の上で静かに、確実に追い詰められていく――。</p>
-                <div class="sample-tags">
-                  <span class="tag">#一次創作</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#オフィスラブ</span>
-                  <span class="tag">#三角関係</span>
-                  <span class="tag">#取り合い</span>
-                  <span class="tag">#職場セックス</span>
-                  <span class="tag">#言葉責め</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="category">
-        <h3>男性向けR-18</h3>
-        <div class="samples-grid">
-          <a href="novelsample5.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/maid.jpg" alt="ご主人様、そろそろミルクのお時間ですよ♡" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">ご主人様、そろそろミルクのお時間ですよ♡</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">美少女ゲーム・セレスティアネストラの世界へと迷い込んだ青年・悠真。目覚めた先は、優雅で妖艶なメイド艦シルヴィアと母性的なリュシールが仕える母港。現実の重圧から逃れられぬ彼を、二人の美少女RE-GINAが甘やかし尽くし、母乳や膝枕、奉仕で心身ともに蕩けさせていく――。
-</p>
-                <div class="sample-tags">
-                  <span class="tag">#夢（掲載許可有依頼品）</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#転生</span>
-                  <span class="tag">#3P</span>
-                  <span class="tag">#女性優位</span>
-                  <span class="tag">#メイド</span>
-                  <span class="tag">#赤ちゃんプレイ</span>
-                  <span class="tag">#母乳</span>
-                  <span class="tag">#小スカ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="novelsample6.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/duel.jpg" alt="敗北デュエリスト ～落ちぶれ姉はDK義弟の肉便器～" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">敗北デュエリスト ～落ちぶれ姉はDK義弟の肉便器～</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">かつては若手デュエリストとして名を馳せた少女・響。しかし敗北と転落の果てに、地下デュエル場で観客の前に晒され、快楽と屈辱の渦に呑まれる日々を送っている。そんな彼女の前に現れるのは、義弟・ハル。義姉と義弟、血の繋がりのない二人の間で欲望と愛憎が歪にねじれていく――。</p>
-                <div class="sample-tags">
-                  <span class="tag">#二次オリ</span>
-                  <span class="tag">#NL</span>
-                  <span class="tag">#義弟</span>
-                  <span class="tag">#キメセク</span>
-                  <span class="tag">#敗北</span>
-                  <span class="tag">#快楽堕ち</span>
-                  <span class="tag">#あへおほ</span>
-                  <span class="tag">#♡喘ぎ</span>
-                  <span class="tag">#汚喘ぎ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="novelsample7.html" style="text-decoration: none;">
-            <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/futa.jpg" alt="おっとり人妻、後輩のふたなりチンポに躾けられる" style="width:100%; height:100%; object-fit:cover;">
-                <div class="sample-title">おっとり人妻、後輩のふたなりチンポに躾けられる</div>
-              </div>
-              <div class="sample-info">
-                <p class="sample-description">夫の単身赴任で孤独な日々を過ごす専業主婦・瀬戸千冬は、かつての後輩・柊ことりと偶然再会する。清楚な美貌の裏にふたなりの肉体と支配欲を隠すことりは、千冬の秘めた欲望を見抜き、巧みに身体と心を絡め取っていく――。</p>
-                <div class="sample-tags">
-                  <span class="tag">#一次創作</span>
-                  <span class="tag">#GL</span>
-                  <span class="tag">#ふたなり</span>
-                  <span class="tag">#人妻</span>
-                  <span class="tag">#言葉責め</span>
-                  <span class="tag">#♡喘ぎ</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // ハンバーガーメニュー
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); });
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => { navMenu.classList.remove('active'); });
-    });
-
-    // アンカーのスムーススクロール（ヘッダー分オフセット）
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const headerHeight = 70;
-        const targetPosition = target.offsetTop - headerHeight;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-      });
-    });
-  </script>
-
-  <footer class="site-footer">
-    &copy; なでり 2025. All rights reserved.
-  </footer>
-</body>
-</html>
+          <h4 cl
