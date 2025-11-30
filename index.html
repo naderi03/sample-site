@@ -52,7 +52,7 @@
     }
     .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: bold; }
     .hero p {
-      font-size: 0.65rem; /* セミコロン修正 */
+      font-size: 0.65rem;
       max-width: 600px;
       margin: 0 auto;
       opacity: 0.8;
@@ -128,29 +128,27 @@
     .sample-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { background: #CBD3D4; color: #2c3e50; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; }
 
-    /* ===== PC：横スクロールをコンテナ内で安全に（先頭欠けを解消） ===== */
     .category .samples-grid {
       display: flex;
       gap: 2rem;
       flex-wrap: nowrap;
       overflow-x: auto;
-      overflow-y: visible;          /* 影が切れないように */
-      /* .container の padding:0 20px を相殺→再付与 */
+      overflow-y: visible;
       margin-inline: -20px;
       padding-inline: 20px;
-      padding-bottom: 1rem;         /* 影の余白 */
+      padding-bottom: 1rem;
       scroll-behavior: smooth;
-      scroll-padding-left: 20px;    /* 先頭カードを欠けさせない */
-      justify-content: flex-start;  /* 初期表示は左から3枚見える */
+      scroll-padding-left: 20px;
+      justify-content: flex-start;
     }
     .category .samples-grid .sample-card {
       width: 360px;
-      flex-shrink: 0;               /* カードを縮ませない */
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       border-radius: 8px;
     }
-    .sample-description { flex-grow: 1; } /* 説明領域で高さ調整 */
+    .sample-description { flex-grow: 1; } 
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -167,7 +165,6 @@
       .profile-content { flex-direction: column; text-align: center; }
       .strengths-grid { flex-direction: column; }
 
-      /* モバイルでは縦並びに戻す */
       .category .samples-grid {
         display: flex;
         flex-direction: column;
@@ -179,18 +176,15 @@
       }
       .category .samples-grid .sample-card { width: 100%; max-width: none; }
 
-      /* ご要望済み：スマホの文字サイズ微調整 */
       .profile-text p,
       .samples-notice p { font-size: 0.85rem; }
     }
 
-    /* Footer */
     .site-footer {
       background-color: #CBD3D4; color: #2c3e50; text-align: center;
       padding: 2rem 1rem; font-size: 0.85rem; font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif; border-top: 1px solid #ddd;
     }
 
-    /* Good/Bad 記号 */
     .content-item h4::before {
       display: inline-block; width: 1em; margin-right: 0.3em; font-weight: bold; font-size: 1rem;
     }
@@ -350,7 +344,7 @@
       </div>
 
       <div class="category">
-        <h3>成人向け</h3>
+        <h3>成人向け作品</h3>
         <div class="samples-grid">
           <a href="novelsample2.html" style="text-decoration: none;">
             <div class="sample-card">
@@ -433,7 +427,6 @@
   </section>
 
   <script>
-    // ハンバーガーメニュー
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); });
@@ -441,7 +434,6 @@
       link.addEventListener('click', () => { navMenu.classList.remove('active'); });
     });
 
-    // アンカーのスムーススクロール（ヘッダー分オフセット）
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -458,6 +450,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
