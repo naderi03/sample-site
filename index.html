@@ -60,7 +60,7 @@
 
     
     section { padding: 80px 0; }
-    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #3E2723; font-weight: 300; }
+    .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #3E2723; font-weight: bold; }
 
     
     .profile-content { display: flex; align-items: center; gap: 3rem; max-width: 800px; margin: 0 auto; }
@@ -111,21 +111,44 @@
       background: white; border-radius: 10px; overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
     }
     .sample-card:hover { transform: translateY(-5px); }
 
     .sample-image {
-      position: relative; height: 200px; background: linear-gradient(135deg, #F9E79F, #F4D03F);
+      position: relative; height: 200px;
       display: flex; align-items: center; justify-content: center; color: #3E2723; font-size: 1.2rem; overflow: hidden;
     }
     .sample-title {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: rgba(0,0,0,0.7); color: white; padding: 1rem; font-size: 1.1rem; font-weight: bold;
     }
-    .sample-info { padding: 1.5rem; }
-    .sample-description { color: #6D4C41; margin-bottom: 1rem; font-size: 0.75rem; }
+    .sample-info { 
+      padding: 1.5rem; 
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      min-height: 12.375rem;
+    }
+    .sample-description { 
+      color: #6D4C41; 
+      font-size: 0.75rem; 
+      height: 5.625rem;
+      overflow: hidden;
+      line-height: 1.125rem;
+      margin-bottom: 0;
+    }
 
-    .sample-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .sample-tags { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 0.5rem; 
+      min-height: 2.25rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      align-content: flex-start;
+    }
     .tag { background: #F9E79F; color: #3E2723; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; }
 
     .category .samples-grid {
@@ -144,11 +167,8 @@
     .category .samples-grid .sample-card {
       width: 360px;
       flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
       border-radius: 8px;
     }
-    .sample-description { flex-grow: 1; } 
 
     
     @media (max-width: 768px) {
@@ -225,7 +245,6 @@
       width: 80px;
       height: 80px;
       object-fit: cover;
-      border-radius: 50%;
     }
   </style>
 </head>
@@ -247,7 +266,6 @@
   <section class="hero">
     <div class="container">
       <h1>sample site</h1>
-      <p>本ページには成人向けの表現が含まれておりますため、18歳未満の方の閲覧はご遠慮ください。</p>
     </div>
   </section>
 
@@ -281,7 +299,7 @@
         <div class="strength-card">
           <img src="images/tsuyomi03.png" alt="キャラクターの尊重" class="strength-icon">
           <h4>キャラクターの尊重</h4>
-          <p>キャラクターを単なる物語の駒としてではなく、いち人間として尊重することを信条としています。お預かりしたキャラクター様魅力を損なわぬよう丁寧に大切に書かせていただきます。</p>
+          <p>キャラクターを単なる物語の駒としてではなく、いち人間として尊重することを信条としています。お預かりしたキャラクター様の魅力を損なわぬよう丁寧に大切に書かせていただきます。</p>
         </div>
       </div>
     </div>
@@ -337,8 +355,8 @@
     <div class="container">
       <h2 class="section-title">作品サンプル</h2>
       <div class="samples-notice">
-        <p>掲載中のサンプル作品は、主に成人向けの内容となっており、非常に過激な表現を含むものもございますので、閲覧の際はご注意ください。</p>
-        <p>各作品にはタグを明記しておりますので、苦手な要素が含まれていないか、必ずご確認の上でご覧いただきますようお願いいたします。</p>
+        <p>以下のサンプル作品には成人向けの内容が含まれるため、18歳未満の方の閲覧はお控えください。</p>
+        <p>また、各作品にはタグを明記しておりますので、苦手な要素が含まれていないかを必ずご確認の上で閲覧くださいませ。</p>
       </div>
 
       <div class="category">
@@ -346,8 +364,7 @@
         <div class="samples-grid">
           <a href="novelsample1.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/natsunoennite.png" alt="夏風の間奏" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #a9ba8e;">
                 <div class="sample-title">夏風の間奏</div>
               </div>
               <div class="sample-info">
@@ -365,8 +382,7 @@
           </a>
                     <a href="novelsample9.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/kamisama.png" alt="かみさまもねむるよるに。" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #f0c4a8;">
                 <div class="sample-title">かみさまもねむるよるに。</div>
               </div>
               <div class="sample-info">
@@ -389,8 +405,7 @@
         <div class="samples-grid">
           <a href="novelsample2.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/dokutomitsuto.png" alt="毒と蜜と" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #aa98a9;">
                 <div class="sample-title">毒と蜜と</div>
               </div>
               <div class="sample-info">
@@ -398,7 +413,6 @@
                 <div class="sample-tags">
                   <span class="tag">#ご依頼作品（掲載許可有）</span>
                   <span class="tag">#BL</span>
-                  <span class="tag">#先輩後輩</span>
                   <span class="tag">#誘い受け</span>
                   <span class="tag">#媚薬</span>
                   <span class="tag">#♡喘ぎ</span>
@@ -408,8 +422,7 @@
           </a>
           <a href="novelsample3.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/labyrinth.png" alt="ヴィスカス・ラビリンスの恋人たち" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #9ca4a8;">
                 <div class="sample-title">ヴィスカス・ラビリンスの恋人たち</div>
               </div>
               <div class="sample-info">
@@ -427,8 +440,7 @@
           </a>
           <a href="novelsample8.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/yayo.png" alt="世界で一番やわらかな証明" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #D8A1A0;">
                 <div class="sample-title">世界で一番やわらかな証明</div>
               </div>
               <div class="sample-info">
@@ -445,8 +457,7 @@
           </a>
             <a href="novelsample10.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/byakuren.png" alt="白蓮帝国艶政録 ～女帝玲珠～" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #F7F7F7;">
                 <div class="sample-title">白蓮帝国艶政録 ～女帝玲珠～</div>
               </div>
               <div class="sample-info">
@@ -463,8 +474,7 @@
           </a>
           <a href="novelsample4.html" style="text-decoration: none;">
             <div class="sample-card">
-              <div class="sample-image">
-                <img src="images/sazanaminoori.jpg" alt="さざなみの檻" style="width:100%; height:100%; object-fit:cover;">
+              <div class="sample-image" style="background-color: #d4e1e8;">
                 <div class="sample-title">さざなみの檻</div>
               </div>
               <div class="sample-info">
@@ -509,4 +519,3 @@
   </footer>
 </body>
 </html>
-
