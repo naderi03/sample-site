@@ -1,1 +1,923 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>秒速ゼロメートルの星間飛行 - naderi's sample site</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Train+One&family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            
+            --bg-color-body: #FFFCF5;       
+            --bg-color-container: #FFFFFF;  
+            --text-color-main: #4E342E;     
+            --text-color-accent: #3E2723;   
+            --theme-color-yellow: #F9E79F;  
+            --theme-color-dark: #F4D03F;    
+            
+            
+            --novel-font-size: 15px; 
+        }
 
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color-main);
+            background-color: var(--bg-color-body);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        header {
+            background-color: var(--theme-color-yellow);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: var(--text-color-accent);
+            text-decoration: none;
+            font-family: 'Train One', sans-serif;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-color-accent);
+            text-decoration: none;
+            font-weight: normal;
+            transition: color 0.3s;
+            font-family: 'Kiwi Maru', sans-serif;
+        }
+
+        .nav-link:hover {
+            color: #795548;
+        }
+
+        
+        main {
+            padding: 6rem 0 3rem;
+        }
+
+        .novel-container {
+            background: var(--bg-color-container);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+
+        .novel-header {
+            padding: 2.5rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--theme-color-yellow) 0%, var(--theme-color-dark) 100%);
+            text-align: center;
+        }
+
+        .novel-title {
+            font-size: 2.2rem;
+            color: var(--text-color-accent);
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            font-family: 'Kiwi Maru', sans-serif;
+        }
+
+        .novel-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-color-accent);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .novel-content {
+            padding: 2.5rem;
+        }
+
+        
+        .novel-controls {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem; 
+            
+        }
+
+        
+        .fs-btn-group {
+            display: flex;
+            gap: 5px;
+        }
+        .fs-btn {
+            background: transparent;
+            border: 1px solid var(--text-color-accent);
+            color: var(--text-color-accent);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .fs-btn:hover, .fs-btn.active {
+            background: var(--text-color-accent);
+            color: var(--bg-color-container);
+        }
+
+        
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-color-accent);
+        }
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            margin-left: 0; 
+        }
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--text-color-accent);
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        
+        .novel-text {
+            font-size: var(--novel-font-size); 
+            line-height: 2;
+            color: var(--text-color-main);
+            text-align: justify;
+            font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+            transition: font-size 0.2s ease;
+        }
+
+        .novel-text p {
+            margin-bottom: 1.5rem;
+            text-indent: 1em;
+        }
+        .novel-text p:first-child {
+            text-indent: 0;
+        }
+
+        
+        .home-button-container {
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 1px solid #eee; 
+            transition: border-color 0.3s;
+        }
+
+        .home-button {
+            display: inline-block;
+            background: var(--theme-color-yellow);
+            color: var(--text-color-accent);
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: normal;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-family: 'Kiwi Maru', sans-serif;
+        }
+        .home-button:hover {
+            background: var(--theme-color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .site-footer {
+            background-color: var(--theme-color-yellow);
+            color: var(--text-color-accent);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.85rem;
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            border-top: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        
+        body.dark-mode {
+            
+            --bg-color-body: #2D1713;       
+            --bg-color-container: #3E2723;  
+            --text-color-main: #FFF8E1;     
+            --text-color-accent: #F9E79F;   
+            
+        }
+
+        body.dark-mode .tag {
+            background: var(--text-color-accent); 
+            color: var(--bg-color-container);     
+        }
+        
+        body.dark-mode .home-button {
+            background: var(--text-color-accent);
+            color: var(--bg-color-container);
+        }
+        body.dark-mode .home-button:hover {
+            background: #FFF176; 
+        }
+
+        body.dark-mode .fs-btn {
+            border-color: var(--text-color-accent);
+            color: var(--text-color-accent);
+        }
+        body.dark-mode .fs-btn:hover, 
+        body.dark-mode .fs-btn.active {
+            background: var(--text-color-accent);
+            color: var(--bg-color-container);
+        }
+
+        body.dark-mode .novel-header {
+            
+            
+            
+        }
+        body.dark-mode .novel-header .novel-title {
+            color: #3E2723; 
+        }
+        body.dark-mode .logo,
+        body.dark-mode .nav-link {
+            color: #3E2723; 
+        }
+        body.dark-mode .site-footer {
+            color: #3E2723;
+        }
+
+        
+        body.dark-mode .site-footer,
+        body.dark-mode .home-button-container {
+            border-top-color: #5D4037;
+        }
+
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 15px; }
+            .novel-header { padding: 2rem 1.5rem 1.5rem; }
+            .novel-title { font-size: 1.8rem; }
+            .novel-content { padding: 1.5rem; }
+            .home-button-container { padding: 2rem 1.5rem; }
+            .novel-tags { gap: 0.5rem; }
+            .tag { font-size: 0.8rem; padding: 0.3rem 0.8rem; }
+            
+            .novel-controls {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">naderi's sample site</a>
+                <nav class="header-nav">
+                    <a href="index.html" class="nav-link">ホームに戻る</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <article class="novel-container">
+                <div class="novel-header">
+                    <h1 class="novel-title">秒速ゼロメートルの星間飛行</h1>
+                    <div class="novel-tags">
+                        <span class="tag">#ご依頼作品（掲載許可有）</span>
+                        <span class="tag">#NL</span>
+                        <span class="tag">#恋人未満</span>
+                        <span class="tag">#先輩後輩</span>
+                    </div>
+                </div>
+
+                <div class="novel-content">
+                    
+                    <div class="novel-controls">
+                        <div class="fs-btn-group">
+                            <button type="button" class="fs-btn active" data-size="15px">小</button>
+                            <button type="button" class="fs-btn" data-size="18px">中</button>
+                            <button type="button" class="fs-btn" data-size="21px">大</button>
+                        </div>
+                        <div class="theme-switch-wrapper">
+                            
+                            <label class="theme-switch">
+                                <input type="checkbox" id="themeToggle">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <section class="novel-text">
+                        <p>
+  昇降口の白いタイルは、夕方の光を受けて鈍く濡れていた。<br>
+　靴箱の列の向こうで制服の紺とマフラーの色が入り混じり、笑い声とスマートフォンの着信音が折り重なる。<br>
+<br>
+　小鳥遊世良はそんな喧騒の真ん中で少しだけ肩をすくめて微笑んでいた。<br>
+　ローファーのかかとで床を軽く鳴らしながら、目の前のクラスメイトたちを順番に見やる。<br>
+<br>
+「なあ小鳥遊、今からカラオケ行かない？　テスト返ってきたじゃん。反省会ってことで」<br>
+「そうそう、駅前の新しいとこ、広いらしいよ。女子も何人か来るって」<br>
+<br>
+　誰かが言えば、誰かが笑い、誰かが顔色を窺う。<br>
+　台詞も間もだいたい予想通りで、少しもずれない。<br>
+　世良は口元に柔らかい笑みを浮かべながら、内心で答えを選ぶ。<br>
+<br>
+　断っても嫌われない言い方。<br>
+　相手を傷つけず、誘いの体面だけは保つ言い回し。<br>
+　何度も繰り返した、退屈なルーティン。<br>
+<br>
+「あー、ごめん。今日はどうしても外せない用事があってさ」<br>
+<br>
+　わざと少し困ったような顔を作る。<br>
+　金色の前髪がふわりと揺れ、周囲の女子の視線がそれを追った。<br>
+<br>
+「埋め合わせとして、次は俺の黒歴史ソング解禁するってことで手打ちにしよ？」<br>
+<br>
+　冗談めかした一言に笑いが起きる。<br>
+　肩を軽く叩かれ「しゃーないな」「約束だぞ」と言われて、世良は軽く手を振った。<br>
+<br>
+　彼らの視線が離れ、別の渦へと流れていく。<br>
+　昇降口の喧騒が少しだけ遠のいたように感じられた。<br>
+<br>
+　いつも通りだ、と世良は思う。<br>
+<br>
+　誘われるのも、断るのも、笑わせるのも、全部こうすればこう返ってくると決まっている。<br>
+　一度解けてしまえば、二度目以降は計算するまでもない。<br>
+　世界はそうやって薄く均されたパターンの繰り返しでできている。<br>
+<br>
+　だからこそ退屈なのだと、彼はとうに理解していた。<br>
+<br>
+　上履きを脱ぎ、ローファーに足を滑り込ませたそのとき。<br>
+　昇降口の喧騒がふいに一瞬だけ薄くなる。<br>
+　人の波が途切れ、目の前の空間が風にえぐり取られたように空白になった。<br>
+<br>
+「ことりくん！！」<br>
+<br>
+　叫び声とともに校舎の陰から小さな人影が飛び出してくる。<br>
+　そのあまりにも唐突な登場に数人の生徒が一斉に振り返ったけれど、すぐに視線を逸らして足早に去っていった。<br>
+　誰も関わりたくないという空気があからさまに漂っている。<br>
+　世良は内心で苦笑しながら、視線の先にいる小柄な少女を見つめた。<br>
+<br>
+　雲母色。<br>
+　オカルト研究会部長にして、この退屈な世界における、唯一の例外。<br>
+<br>
+　世良はほんの一拍だけまばたきをして、すぐに外面用の笑みを引っ込めた。<br>
+　その代わりに浮かべるのは、やれやれと眉尻を下げた、彼女専用の顔だ。<br>
+<br>
+「お疲れさまです、先輩。今日はまた、ずいぶんと派手な登場ですね」<br>
+「そんなことを言っている場合ではないぞ。見たまえ、ことりくん」<br>
+<br>
+　スマートフォンの画面には妙に暗い写真が映っていた。<br>
+　ピントの合っていない夜空。<br>
+　そこに不鮮明な光の点がひとつ、ぼやりと滲んでいる。<br>
+<br>
+『鹿上山上空に謎の光源！　ついに侵略か！？』<br>
+<br>
+　画面下部のスレッドタイトルが、元気に存在を主張していた。<br>
+<br>
+「鹿上山に『彼ら』が来ている。観測の好機だ。今すぐ向かわなければ！」<br>
+<br>
+　色の瞳は冷たい蛍光灯の下でも異様に明るい。<br>
+　興奮で頬が紅潮し、制服の襟元も冬だというのに無造作に開いている。<br>
+　胸のポケットからは折りたたまれた何かの回路図がはみ出していた。<br>
+<br>
+　世良は一瞬だけ昇降口を見回した。<br>
+　まだ生徒は多く、教師の姿もちらほら見える。<br>
+　このまま色が「侵略」だの何だのと叫び続ければ、余計な注目を集めかねない。<br>
+<br>
+「先輩」<br>
+<br>
+　低く呼びかけると同時に、世良は色の袖を掴んだ。<br>
+　手首に触れた瞬間、拍子抜けするほど頼りない軽さが指先に沈む。<br>
+<br>
+「続きはこっちで聞きます。ここで騒ぐと目立つんで」<br>
+<br>
+　笑顔を保ったまま、世良は色を半ば引きずるようにして、人の少ない校舎裏へと歩き出した。<br>
+　靴底がタイルからアスファルトへと移る感触を足裏に受けながら、世良は心のどこかでひそかに高揚している己を自覚する。<br>
+<br>
+　退屈な世界を乱してくれるのは、いつだって、この奇妙な先輩だけなのだ。<br>
+<br>
+＊＊＊<br>
+<br>
+　校舎の角を曲がると、さっきまで耳を満たしていた笑い声と足音が急にフィルターをかけられたみたいに遠くへ退いていく。<br>
+　世良は色の袖を掴んだまま、そのまま校舎裏の駐輪場へと歩調を速めた。<br>
+<br>
+　校舎裏の駐輪場は薄暗い外灯に照らされているだけだった。<br>
+　冬の空はすでに群青色に沈みかけていて、吐く息が白く立ち上る。<br>
+<br>
+　世良は自分のスマートフォンを取り出し、天気アプリを色の眼前にかざして見せた。<br>
+<br>
+「いまから冬の山なんて遭難しに行くようなもんですよ？　見てください、この気温」<br>
+<br>
+　現在の気温は五度。<br>
+　日没後の山ならさらに冷え込むだろう。<br>
+　まともな装備もなく登るのは自殺行為だ。<br>
+　けれど色はそんな世良の正論などまるで聞いていなかった。<br>
+<br>
+「善は急げ、だ！　今行かないと確率波動が収束してしまう！」<br>
+<br>
+　色の瞳は相変わらずきらきらと輝いていて、その興奮がもう誰にも止められないことを世良はよく知っていた。<br>
+　色がこうなったとき、せ理も理屈も何の意味も持たない。<br>
+　彼女の世界では、すでに「UFOが来ている」という事実が確定していて、それを確かめに行くことは必然なのだ。<br>
+<br>
+「だからって……こんな格好で山に行くつもりですか。自殺行為ですよ」<br>
+<br>
+　世良は色の格好を見て、またため息をついた。<br>
+　色は制服の上に薄手のカーディガンを一枚羽織っているだけだ。<br>
+　首元には何も巻かれておらず、むき出しの白い肌が空気にさらされている。<br>
+<br>
+　やれやれと言わんばかりの顔つきで、世良は自分のスクーターのメットインを開けた。<br>
+　カチリという小さな音が静まり返った空気に響き、同時に冷気がシート下の収納スペースからふわりと立ち上る。<br>
+　世良はそこから取り出した自身のマフラーを、ためらいもなく色の首に巻きつけていく。<br>
+<br>
+「むぐっ……な、なんだ、ことりくん。視界が」<br>
+「黙っててください。はい、もう一周」<br>
+<br>
+　柔らかなフリースが口元まで何重にも巻かれ、マフラーの隙間から漏れる彼女の吐息が冷えた空気を白く曇らせる。<br>
+<br>
+　続けて、世良はリアボックスから自分の予備のウィンドブレーカーを引っ張り出した。<br>
+　自分用のサイズなので、色に着せると袖がすっかり手の甲を越えてしまう。<br>
+<br>
+「う、動きにくい。これでは緊急時の回避行動に支障が」<br>
+「いいから腕、通して」<br>
+<br>
+　ぶかぶかの袖口をぐいと引き寄せて手首ごと布の奥に押し込みながら、世良は逃げ場を塞ぐようにその細い体をナイロンの中へきちんと収めていった。<br>
+　ファスナーを引き上げると、布地の中に閉じ込められた色の体温がかすかに伝わってくる。<br>
+<br>
+　そして最後に、ヘルメット。<br>
+　白いフルフェイスを色の頭にそっと被せ、世良は顎紐を手に取った。<br>
+<br>
+「顎、上げてください」<br>
+<br>
+　言われるままに顔を上向けた色の喉元は、マフラーに半分埋もれている。<br>
+　そのわずかな隙間を指先で探り、留め金をカチリと締める。<br>
+<br>
+　一瞬、指先が肌に触れた。<br>
+　冷えているはずなのに、驚くほど柔らかい。<br>
+　ほんの刹那の接触に、世良の心臓が、寒さとは別の理由で小さく跳ねた。<br>
+<br>
+　色は何も気づいていない様子で、ヘルメットの中でむずむずと首を振る。<br>
+<br>
+「うう……あごがこそばゆい……」<br>
+<br>
+　世良は自分のヘルメットも被り、スクーターに跨がった。<br>
+　エンジンキーをひねると、静かな振動が二人の足元から立ち上る。<br>
+<br>
+「じゃ、しっかり捕まっててくださいよ、先輩。振り落とされても知りませんからね」<br>
+「ふふん。私の計算では、重心移動と慣性モーメントは完璧だ。任せたまえ」<br>
+<br>
+　胸を張って言いながらも、色はおずおずと世良の背後に乗り、腕を彼の腰に回した。<br>
+　ウィンドブレーカー越しに細い腕がぎゅっと力を込めてくる。<br>
+　その重みが、世良の腰骨のあたりから背骨へと確かな線を描いて伝わってきた。<br>
+<br>
+　世良は背中に刻まれた細い重心のラインをなぞるみたいに、静かにスロットルを開いた。<br>
+　世界がまた、彼女と自分だけの夜へと滑り出していく。<br>
+<br>
+＊＊＊<br>
+<br>
+　校舎を離れ、住宅街を抜けると、途端に風の質が変わった。<br>
+　夜の国道を斜めに横切る風は冬の街路樹の枝を震わせ、裸になった枝先が空を叩く。<br>
+<br>
+　スクーターのエンジン音が一定のリズムで足元から響いている。<br>
+　冬の空気は乾いていて、頬に刺さるように冷たい。<br>
+　シールドの内側に吐息が薄く曇り、世良はそれを袖でぬぐった。<br>
+<br>
+　背中には色の体温がぴたりと張りついている。<br>
+　衣服の分だけ距離があるはずなのに、細い腕の締め付けがその隔たりを平然と無効化していた。<br>
+<br>
+　信号が赤に変わり、世良はブレーキを握る。<br>
+　速度が落ちると同時に、背後の色の身体がわずかに前へと傾ぎ、背中にぐっと重さがかかった。<br>
+　布越しに伝わる温もりが寒さでこわばっていた肩の筋肉をじわりと溶かしていく。<br>
+<br>
+　この距離感は、普通の先輩後輩ではあり得ないだろうと、世良は思う。<br>
+　けれど、色にとって「普通」は最初から意味を持たない単語で、世良にとっても、とうの昔に価値を失った概念だった。<br>
+　彼女の世界において、世良はたったひとり観測者であり保護者であり、友人である。<br>
+　それらの役割をひとつにまとめてしまえば、物理的な距離が少しばかり近くても、もう驚くには値しない。<br>
+<br>
+　そんなことをぼんやり考えていると、ヘルメット越しに背後から声が飛んできた。<br>
+<br>
+「こ……りくん、聞こえ……か！」<br>
+<br>
+　風切り音に削られ、言葉の断片だけが耳に届く。<br>
+<br>
+「……うー！　……ちゅー！　……れい、……ん……！」<br>
+<br>
+　宇宙線か重力波か、あるいは零点エネルギーの話か。<br>
+　どれでも同じように、色にとっては重要で、世良にとっては聞き慣れた熱弁だ。<br>
+<br>
+「聞こえてませんから、前だけ見ててください。バランス崩れるんで」<br>
+<br>
+　少し首をひねって言うと、背中に回された腕がなぜかぎゅっと力を増した。<br>
+<br>
+「この距離……ゼロ点……エネル……ぎり……なのだ……！」<br>
+「先輩、動かないでくださいってば」<br>
+<br>
+　ため息がシールドの内側で白く広がる。<br>
+　彼は視線を前方に戻しながら、心の中で天を仰いだ。<br>
+<br>
+　背中越しに伝わるのは、ほとんど起伏のない胸元がぺちょりと押し当てられる感触。<br>
+　それでも確かにやわらかさと丸みがあって、高めの体温がそれを一層生々しく伝えてくる。<br>
+　もちろん、健全な男子高校生として、これに全く何も感じないわけではない。<br>
+　むしろ、何も感じないふりをするために、世良はいつもより少しだけアクセルの回し方に慎重になっていた。<br>
+<br>
+　色はおそらく何も考えていないだろう。<br>
+　ただ「落ちないように」という要請に従って、世良の腰にしがみついているだけだ。<br>
+<br>
+　だから、世良は視線を夜の道に固定した。<br>
+　標識の青が寒々しい光を放ち、国道のオレンジ色の街灯が等間隔に彼らの影を伸ばしては切り落としていく。<br>
+<br>
+　退屈な世界の、いつもと変わらない風景。<br>
+　その中を、唯一予測不能な存在を背中に乗せて、彼は走っていく。<br>
+<br>
+　やがて、国道から逸れ、鹿上山につながる細い山道に入った。<br>
+　一応舗装はされているが、街灯の数は少なく、一歩間違えれば路肩から滑り落ちそうなカーブが続いている。<br>
+<br>
+　勾配がきつくなるにつれ、スクーターのエンジン音は少しずつ高い悲鳴めいた響きに変わっていく。<br>
+　路肩をかすめる枯れ枝が足元を叩き、その小さな衝撃に合わせて色の身体がびくりと震えた。<br>
+　世良は「大丈夫ですよ」と声に出す代わりにスピードをほんのわずか落とし、慎重すぎるほど丁寧にカーブをトレースする。<br>
+　そうして険しいカーブをひとつひとつなぞるように登りきると、路面の傾きがふいに緩やかになり、平らなスペースが闇の中に切り取られたように浮かび上がった。<br>
+は<br>
+　鹿上山の中腹にある展望台の駐車スペースだ。<br>
+　一台も車の停まっていないそこへ、世良はスクーターを滑り込ませる。<br>
+　ブレーキをかけ、エンジンキーを回した瞬間、あたりを満たしていた振動とノイズがすべて消えた。<br>
+<br>
+　静寂。<br>
+　風の音だけが残った。<br>
+　木々の梢を揺らすざわめきと、時折足元の方から聞こえる枯れ葉を踏みしめるような小さな音。<br>
+<br>
+　世良はヘルメットを外し、深く息を吸う。<br>
+　冷たく乾いた空気が肺の奥まで入り込み、胸を内側から刺す。<br>
+<br>
+　背後で、もぞもぞとした気配が動いた。<br>
+<br>
+　色がヘルメットを外し、マフラーに埋もれながら顔を出している。<br>
+　さっきまでの興奮が嘘のように、彼女の表情は硬かった。<br>
+　目だけが周囲の闇を忙しなく追い、指先は世良の制服の袖をぎゅっと摘んで離さない。<br>
+<br>
+「……ぁ……い、今の音は」<br>
+<br>
+　か細い声が、マフラーと夜気に吸い込まれる。<br>
+<br>
+　先ほどまで威勢よく語っていた人物とは思えないほど、その声は頼りなかった。<br>
+　世良は袖にかかった小さな力を感じながら、内心でわずかに笑みを深める。<br>
+<br>
+　これくらいの山道なら野生動物がいてもおかしくない。<br>
+　風で落ちた枝が転がる音も、慣れていない人間には得体の知れない何かの足音に聞こえるだろう。<br>
+<br>
+「……こ、これは、プラズマ生命体の威嚇音である可能性が高い」<br>
+<br>
+　色は震える声で言った。<br>
+　いつもの芝居がかった抑揚をどうにか取り戻そうとしているのが分かる。<br>
+<br>
+「可聴域ぎりぎりの周波数で、我々を試しているんだ。侵略前の、観測行動……」<br>
+「そっすね。何がいるか分からないんで、俺が先頭行きますから」<br>
+<br>
+　世良はあえて彼女の言葉を否定せずに言った。<br>
+<br>
+「離れないでくださいね、先輩」<br>
+<br>
+　袖を掴んだままの色の手に、軽く力を込める。<br>
+　自分に引き寄せるその感覚はどこか甘美な優越感を伴っていた。<br>
+　この人は自分なしではどこへも行けないのだと、そう思い込んでしまいたくなるほどに、その細い指先の震えが世良の胸の奥を静かに満たしていく。<br>
+<br>
+　だからこそ、彼は表情にそれを出さないよう、細心の注意を払う。<br>
+　いつも通りの保護者面を保ちながら、ゆっくりと展望台へ続く小道を歩き出した。<br>
+<br>
+＊＊＊<br>
+<br>
+　展望台への道は、短い階段と緩やかなスロープになっていた。<br>
+　足元のコンクリートには、枯れた落ち葉が薄く積もっている。<br>
+　靴底がそれを踏みしだき、かさ、と乾いた音を立てるたび、色の肩がびくりと震え、袖を掴む指が強くなる。<br>
+<br>
+「ことりくん……」<br>
+「はい」<br>
+「……もし、ここで本当に、異星文明の観測装置に遭遇したら」<br>
+<br>
+　言葉はそこで途切れた。<br>
+　色は何かを計算するように唇をかすかに動かし、息を白く漏らしている。<br>
+<br>
+「そのときは、そのときですよ」<br>
+<br>
+　世良は、振り返らずに答える。<br>
+<br>
+「先輩を連れ去るなら、その前に俺にも少しくらい説明してほしいですけどね」<br>
+<br>
+　色は小さく笑った。<br>
+　この山の冷気の中で、その笑い声だけがやわらかくあたたかい。<br>
+<br>
+　展望台の先端に立つと、視界がひらけた。<br>
+　遠くの街の灯りが夜の底に散らばる星のように瞬いている。<br>
+　風は相変わらず冷たいが、空はどこか澄んでいて、雲一つない闇が頭上に広がっていた。<br>
+<br>
+「……いたっ」<br>
+<br>
+　色がひそやかに言った。<br>
+<br>
+　彼女の視線の先を追うと、山の斜面のさらに向こう側、黒い森の端あたりに、小さな赤い光が見えた。<br>
+　一定の間隔で点滅し、消えてはまた灯る。<br>
+<br>
+　世良は目を細めてそれを見つめるが、どう考えてもただの誘導灯か何かにしか見えない。<br>
+　だが、色の肩は小刻みに震えていた。<br>
+　恐怖ではなく高揚のせいだと、世良はすぐに分かる。<br>
+<br>
+「ことりくん、あれは……コンタクトの合図だ……！！」<br>
+<br>
+　マフラーの中から押し殺した声が聞こえる。<br>
+<br>
+「ゼータ・レティクル星域の標準信号と点滅周期が近似している。誤差範囲は……いや、そんなことは些末だ。まずは記録を……」<br>
+<br>
+　色は持参していた手作りの探知機を取り出した。<br>
+　弁当箱にアンテナを貼り付け、つまみをいくつも取り付けたような、いかにも怪しげな装置だ。<br>
+　彼女はそれを胸元に抱え、赤い光に向かってアンテナを突き出した。<br>
+<br>
+　世良はその横顔を見つめる。<br>
+　寒さで赤くなった鼻先、風に揺れる髪、目の奥で燃えるような興奮。<br>
+　冷え切った指先とは裏腹に、彼女の世界の温度だけが常温を軽々と超えてゆき、その熱に頬を焼かれながらも目を逸らせない自分に、世良はうすく笑う。<br>
+<br>
+　この瞬間、彼女の世界は、きっと世良には想像もつかないほどの豊かさで満ちている。<br>
+　宇宙の果てまでの距離を一息で跳び越え、あの小さな赤い点と、自分とを直結する壮大な物語を紡いでいるのだろう。<br>
+<br>
+　世良にとっては世界の真相が量子でも宇宙人でも構わない。<br>
+　ただ、未知に突き動かされて震える色の肩がすぐ隣にあって、自分だけがその震えを間近で観測していられるという事実があれば、それで十分だった。<br>
+<br>
+　やがて、世良はそっと一歩前に出た。<br>
+　展望台の端まで近づき、柵に手をかける。<br>
+<br>
+「もう少し、近くで見てみましょうか」<br>
+「そ、そうしたいのは山々だが……き、危険では……ないだろうか……？」<br>
+「危なそうなら俺が何とかします。……ていうか、ここまで来て引き返したら、先輩が一番後悔するでしょ」<br>
+<br>
+　階段を降り、展望台から少し離れた位置まで二人で歩くと、赤い光の正体は拍子抜けするほどあっさりと分かった。<br>
+<br>
+　斜面の途中に張り巡らされた電気柵。<br>
+　その柱のひとつに害獣除けのための小さな赤いランプが取り付けられている。<br>
+　規則的に点滅し、周囲の闇に存在を主張しているのはそれだけだった。<br>
+<br>
+　近くには立ち入り禁止を示す黄色い看板と、工事会社の名が印刷されたプレートもある。<br>
+　何のロマンも介在しない、ただの圧倒的な現実。<br>
+<br>
+　色はその場に立ち尽くした。<br>
+<br>
+「……そんなぁ」<br>
+<br>
+　ぽつりと落ちた声は、赤い点滅よりもずっと弱々しい。<br>
+<br>
+「私の計算では、あれは……あれはゼータ・レティクル星人の母船のスペクトルと一致していたはずなのに。なぜ……」<br>
+<br>
+　マフラーの陰で唇がかすかに震え、息が白い霧となって宙にほどけていく。<br>
+<br>
+　世良は、一瞬だけ笑いそうになった。<br>
+　喉の奥に込み上げるそれは、軽いおかしさと、どうしようもないいとおしさが混ざった感情だった。<br>
+<br>
+　けれど、世良は笑わない。<br>
+　喉元で笑いを飲み込み、ほんの少しだけ肩をすくめて見せる。<br>
+<br>
+「……ま、次に本物が来たときの予行演習には、ちょうどよかったんじゃないですか」<br>
+<br>
+　色の中で組み上がっていた壮大な方程式が、安物のランプひとつで無慈悲にゼロへ還元されていく。<br>
+　彼女はがっくりと肩を落とし、赤いランプをただ見つめている。<br>
+　寒さのせいか、悔しさのせいか、鼻先がいっそう赤く見えた。<br>
+<br>
+　世良はそんな色の横顔をしばらく眺めていた。<br>
+　風が二人のコートの裾をひるがえし、夜空の星が遠くで瞬いている。<br>
+<br>
+「先輩」<br>
+<br>
+　静かに呼びかけると、色がわずかに顔をこちらに向けた。<br>
+<br>
+「はい、これ」<br>
+<br>
+　世良は制服のポケットから、さきほど自販機で買っておいた缶ココアを取り出した。<br>
+　手の中でまだほかほかとした温もりを保っている。<br>
+　その缶を突然、色の頬に押し当てた。<br>
+<br>
+「ひゃっ……！」<br>
+<br>
+　高い声がマフラーの奥から跳ねる。<br>
+　あわてて一歩下がろうとした色の袖を世良は軽くつまんで引き留めた。<br>
+<br>
+「反応いいですね、先輩」<br>
+「い、いきなり顔面に熱源を押し付けるのは……っ」<br>
+「ん？　これくらいでびっくりしてたら、ゼなんとか星人と交渉できませんよ？」<br>
+<br>
+　笑いながら言い返し、世良は缶を色の手の中に握らせた。<br>
+　ウィンドブレーカーの袖から覗く色の指先は真っ白に冷え切っている。<br>
+　金属の表面からじわじわと伝わる熱に、色の肩の力が少し抜けた気がした。<br>
+<br>
+「あったまったら、そろそろ帰りましょうね」<br>
+「ゔー……」<br>
+「ほらぁ、行きますよ。先輩が風邪で休んだら、俺は部室でひとりぼっちになっちゃうんですから」<br>
+<br>
+　何でもないように言うと、色はヘルメットの縁を握ったまま、小さく瞬きをした。<br>
+<br>
+　その表情の変化を世良は見逃さない。<br>
+　驚きと、戸惑いと、ほんの少しの安心が彼女の顔に同時に浮かんでいる。<br>
+<br>
+　誰もいない冬の山の上で、その表情を見ているのは自分だけ。<br>
+　それで十分だと、思ってしまう自分がいる。<br>
+<br>
+＊＊＊<br>
+<br>
+　山を下る道を来たときよりもゆっくりと進む。<br>
+　路面が凍っていないか慎重に確かめるように、世良はブレーキを小刻みに使いながらスクーターを走らせた。<br>
+<br>
+　背中には行きと同じように色の体温がある。<br>
+　ただ、さきほどと違うのは、彼女の腕の力が少しだけ抜けていることだった。<br>
+<br>
+　両手でココアの缶を大事そうに抱え、その上から軽く世良の腰に腕を回している。<br>
+　体温と缶の熱が混ざり合って、背中越しに伝わる温度は柔らかく、眠気を誘うような穏やかさを帯びていた。<br>
+　ヘルメット越しに聞こえる息遣いもどこかゆったりとしている。<br>
+　色の意識が夢と現実のあいだに沈みかけているのだと、世良は察した。<br>
+<br>
+　国道に出る手前の緩やかな直線で、背中からふと声が落ちてきた。<br>
+<br>
+「……UFO……いなかったけど」<br>
+<br>
+　風の切れ目に滑り込むような、小さな声だった。<br>
+<br>
+「……ことりくんがいっしょなら、たのしい」<br>
+<br>
+　その言葉が冬の夜気にあっさりとほどけてしまうのが惜しくて、世良はほんの少しだけアクセルを緩めた。<br>
+<br>
+　バイザーの内側で彼の口元が緩む。<br>
+　それは、クラスメイトたちに向けるために作り上げた、外面の良い笑顔ではない。<br>
+　色の前で見せる、呆れたような笑いでもない。<br>
+　どうしようもなく普通の、照れくささと幸福が入り混じった笑みだった。<br>
+<br>
+　見られない安堵に甘えながら、世良は口元の緩みをそっと、しかし飽きることなく保ち続けた。<br>
+<br>
+　この退屈な世界の中で、雲母色だけは、まだ解き方の分からない方程式のままそこにいる。<br>
+　予測不能な値を次々と叩き出し、世良の虚無をかき回してくる。<br>
+<br>
+　そして、そのたびに自分がまだ退屈しきってはいないことを思い知らされるのだ。<br>
+<br>
+「……はいはい。しっかり掴まっててくださいよ、先輩」<br>
+<br>
+　誰にも届かない独り言のように呟き、世良は再びアクセルをひねった。<br>
+<br>
+　スクーターのテールランプが冬の闇に赤く尾を引く。<br>
+　街へと続く坂道の上で、その小さな光はしばらくのあいだ、ふたりの夜を照らし続けた。<br>
+</p>
+                    </section>
+                </div>
+
+                <div class="home-button-container">
+                    <a href="index.html" class="home-button">ホームに戻る</a>
+                </div>
+            </article>
+        </div>
+    </main>
+<footer class="site-footer">
+    &copy; なでり 2025 - 2026. All rights reserved.
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const fsButtons = document.querySelectorAll('.fs-btn');
+        const root = document.documentElement;
+        
+        
+        const savedSize = localStorage.getItem('novel-font-size');
+        if (savedSize) {
+            updateFontSize(savedSize);
+        }
+
+        fsButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const size = btn.getAttribute('data-size');
+                updateFontSize(size);
+                
+                localStorage.setItem('novel-font-size', size);
+            });
+        });
+
+        function updateFontSize(size) {
+            root.style.setProperty('--novel-font-size', size);
+            
+            
+            fsButtons.forEach(b => {
+                if (b.getAttribute('data-size') === size) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+        }
+
+        
+        const toggleSwitch = document.querySelector('#themeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        toggleSwitch.addEventListener('change', function(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = 70;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
